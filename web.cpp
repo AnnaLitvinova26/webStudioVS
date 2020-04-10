@@ -16,14 +16,14 @@ int main()
 
 	for (int i = 0; i < 10; i++) {
 		std::string s = std::to_string(i);
-		comp->AddTask(new Task("task" + s, i + 1));
+		comp->addTask(new Task("task" + s, i + 1));
 	}
 
-	while (comp->HaveWork()) {
+	while (comp->haveWork()) {
 		comp->getWorkers();
 
 		std::cout << "________________________________" << std::endl;
-		comp->Process();
+		comp->process();
 	}
 
 	comp->getWorkers();

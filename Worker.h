@@ -10,15 +10,12 @@
 
 class Worker {
 public:
-	Worker(std::string surname, std::string name) {
-		_surname = surname;
-		_name = name;
-		score = 0;
-	}
-	void AddTask(Task* task);
-	void Process();
-	bool HaveWork();
+	Worker(std::string surname, std::string name);
+	void addTask(Task* task);
+	void process();
+	bool haveWork();
 	void deleteTask();
+	void setScore(int sc);
 
 	std::string getWorker();
 	void addListener(Listener* listener);

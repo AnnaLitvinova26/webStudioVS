@@ -7,39 +7,58 @@ Dept::Dept(Dept* next) {
 	countW = 0;
 }
 
-std::vector <Worker> Dept::getWorkers() {
+std::vector <Worker*> Dept::getWorkers() {
 	return workers;
 }
 
-void Dept::addWorker(Worker worker) {
+void Dept::addWorker(Worker* worker) {
 	workers.push_back(worker);
-
+	worker->addListener(this);
 }
 
-void Dept::AddTask(Task* task) {
-	workers[countW % workers.size()].AddTask(task);
+void Dept::addTask(Task* task) {
+	workers[countW % workers.size()]->addTask(task);
 	countW++;
 }
 
-bool Dept::Process() {
+void Dept::process() {
 	for (int i = 0; i < workers.size(); i++) {
-		if (workers[i].HaveWork()) {
-			workers[i].Process();
-			/*if (task != 0 && _next != 0) {
-				_next->AddTask(task);
-			}*/
+		if (workers[i]->haveWork()) {
+			workers[i]->process();
 		}
 	}
 }
-bool Dept::HaveWork() {
+bool Dept::haveWork() {
 	for (int i = 0; i < workers.size(); i++) {
-		if (workers[i].HaveWork()) {
+		if (workers[i]->haveWork()) {
 			return true;
 		}
 	}
 	return false;
 }
 
-void Dept::onWorkReady(Task* task, Worker* worker) {
+void Dept::setBoss(Worker* worker) {
+	boss = worker;
+}
 
+void Dept::onWorkReady(Task* task, Worker* worker) {
+	if (worker != boss) {
+		if (task->getDone() == false) {
+			boss->setScore(-task->getLvl());
+		}
+		else {
+			boss->setScore(task->getLvl());			
+		}
+	}
+
+	if (task->getDone() == false) {
+		worker->setScore(-task->getLvl());
+	}
+	else {
+		worker->setScore(task->getLvl());
+		if (_next != 0) {
+			_next->addTask(task);
+		}
+	}
+	
 }

@@ -1,4 +1,4 @@
 ﻿  Dept.cpp
 c:\users\123\desktop\web\dept.cpp(25): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\123\desktop\web\dept.cpp(35): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\123\desktop\web\dept.cpp(33): error C4716: Dept::Process: должна возвращать значение
+c:\users\123\desktop\web\dept.cpp(32): warning C4018: <: несоответствие типов со знаком и без знака
+  web.vcxproj -> C:\Users\123\Desktop\web\Debug\web.exe

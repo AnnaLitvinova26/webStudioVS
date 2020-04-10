@@ -6,7 +6,7 @@ class Worker;
 
 class Listener {
 public:
-	virtual void onWorkReady(Task* task, Worker* worker);
+	virtual void onWorkReady(Task* task, Worker* worker) = 0;
 };
 
 #endif

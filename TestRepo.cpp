@@ -13,24 +13,27 @@ TestRepo::TestRepo() {
 	int i = 0;
 	for (; i < 5; i++) {
 		std::string s = std::to_string(i + 1);
-		surname = "Ivanov" + s;
+		surname = "Ivanov" + s + " ";
 		name = "Ivan" + s;
-		_design->addWorker(Worker(surname, name));
+		_design->addWorker(new Worker(surname, name));
 	}
+	_design->setBoss(_design->getWorkers()[0]);
 
 	for (; i < 10; i++) {
 		std::string s = std::to_string(i + 1);
-		surname = "Ivanov" + s;
+		surname = "Ivanov" + s + " ";
 		name = "Ivan" + s;
-		_front->addWorker(Worker(surname, name));
+		_front->addWorker(new Worker(surname, name));
 	}
+	_front->setBoss(_front->getWorkers()[0]);
 
 	for (; i < 15; i++) {
 		std::string s = std::to_string(i + 1);
 		surname = "Ivanov" + s;
 		name = "Ivan" + s;
-		_back->addWorker(Worker(surname, name));
+		_back->addWorker(new Worker(surname, name));
 	}
+	_back->setBoss(_back->getWorkers()[0]);
 }
 
 Dept* TestRepo::getDesign() {

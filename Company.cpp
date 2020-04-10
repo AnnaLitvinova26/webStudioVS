@@ -9,39 +9,39 @@ Company::Company() {
 	back = getInstance()->getBack();
 }
 
-std::vector<Worker> Company::getWorkersDesign() {
+std::vector<Worker*> Company::getWorkersDesign() {
 	return design->getWorkers();
 }
-std::vector<Worker> Company::getWorkersFront() {
+std::vector<Worker*> Company::getWorkersFront() {
 	return front->getWorkers();
 }
-std::vector<Worker> Company::getWorkersBack() {
+std::vector<Worker*> Company::getWorkersBack() {
 	return back->getWorkers();
 }
 
 void Company::getWorkers() {
 	for (auto w : design->getWorkers()) {
-		std::cout << w.getWorker() << std::endl;
+		std::cout << w->getWorker() << std::endl;
 	}
 	std::cout << std::endl;
 	for (auto w : front->getWorkers()) {
-		std::cout << w.getWorker() << std::endl;
+		std::cout << w->getWorker() << std::endl;
 	}
 	std::cout << std::endl;
 	for (auto w : back->getWorkers()) {
-		std::cout << w.getWorker() << std::endl;
+		std::cout << w->getWorker() << std::endl;
 	}
 	std::cout << std::endl;
 }
 
-void Company::AddTask(Task* task) {
-	design->AddTask(task);
+void Company::addTask(Task* task) {
+	design->addTask(task);
 }
-void Company::Process() {
-	back->Process();
-	front->Process();
-	design->Process();
+void Company::process() {
+	back->process();
+	front->process();
+	design->process();
 }
-bool Company::HaveWork() {
-	return  design->HaveWork() || front->HaveWork() || back->HaveWork();
+bool Company::haveWork() {
+	return  design->haveWork() || front->haveWork() || back->haveWork();
 }

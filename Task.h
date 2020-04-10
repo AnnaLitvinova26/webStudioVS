@@ -5,14 +5,15 @@
 
 class Task {
 public:
-	Task(std::string name, int level) {
-		_name = name;
-		_level = level;
-	}
+	Task(std::string name, int level);
 	std::string getTask();
+	int getLvl();
+	void setDone(bool value);
+	bool getDone();
 private:
 	std::string _name;
 	int _level;
+	bool done;
 };
 
 #endif

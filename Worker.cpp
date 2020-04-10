@@ -2,32 +2,43 @@
 #include "Worker.h"
 
 #include <iostream>
-void Worker::AddTask(Task* task) {
+
+Worker::Worker(std::string surname, std::string name) {
+	_surname = surname;
+	_name = name;
+	score = 0;
+}
+
+void Worker::addTask(Task* task) {
 	tasks.push_back(task);
 }
 
-void Worker::Process() {
+void Worker::process() {
 	int x = rand() % 100;
-	Task* result;
+	Task* result = tasks[0];
 	if (x <= 80) {
-		result = tasks[0];
+		result->setDone(true);
 		tasks.erase(tasks.begin());
 	}
 	else {
-		result = 0;
+		result->setDone(false);
 	}
 	for (auto l : listeners) {
-		//l->onWorkReady(result, );
+		l->onWorkReady(result, this);		
 	}
 }
-bool Worker::HaveWork() {
+bool Worker::haveWork() {
 	if (tasks.size() != 0) {
 		return true;
 	}
-	else false;
+	else return false;
 }
 void Worker::deleteTask() {
 	tasks.erase(tasks.begin());
+}
+
+void Worker::setScore(int sc) {
+	score += sc;
 }
 
 std::string Worker::getWorker() {
@@ -36,7 +47,7 @@ std::string Worker::getWorker() {
 	for (int i = 0; i < tasks.size(); i++) {
 		s += tasks[i]->getTask() + " ";
 	}
-	return _surname + " " + _name + " " + s;
+	return _surname + '\t' + _name + '\t' + s + '\t' + std::to_string(score);
 }
 
 void Worker::addListener(Listener* listener) {

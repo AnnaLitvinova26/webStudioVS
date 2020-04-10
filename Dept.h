@@ -8,17 +8,18 @@
 class Dept :public Listener {
 public:
 	Dept(Dept* next);
-	std::vector <Worker> getWorkers();
-	void addWorker(Worker worker);
+	std::vector <Worker*> getWorkers();
+	void addWorker(Worker* worker);
 
-	void AddTask(Task* task);
-	bool Process();
-	bool HaveWork();
+	void addTask(Task* task);
+	void process();
+	bool haveWork();
+	void setBoss(Worker* worker);
 
-	void onWorkReady(Task* task, Worker* worker);
+	void onWorkReady(Task* task, Worker* worker) override;
 
 private:
-	std::vector <Worker> workers;
+	std::vector <Worker*> workers;
 	Worker* boss;
 
 	Dept* _next;
